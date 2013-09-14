@@ -125,16 +125,16 @@ void show_notes(){
    }
    res = mysql_use_result(conn);
    /* show  notes in the database */
-   printf("%s********Stored notes*******\n",CLR_RED);
+   printf("%sStored notes...\n",CLR_WHT);
 	printf("%s",CLR_NORM);
    while ((row = mysql_fetch_row(res)) != NULL){
 	i++;
-        printf("   %s[%s]     %s\n",CLR_WHT,row[0],row[1]);
+        printf("   %s[%s]    %s%s\n",CLR_WHT,row[0],CLR_RED,row[1]);
 	}
 	if(i<1)
 	printf("\t<EMPTY>\n");
 	else
-	printf("\n  Found [%d] note(s)!\n",i); 
+	printf("\n%s  Found [%d] note(s)!\n",CLR_WHT,i); 
         //set to normal color
         printf("%s",CLR_NORM);
    /* close connection */
@@ -164,7 +164,7 @@ void show_queried_note(char *id){
    res = mysql_use_result(conn);
    /*print the note */
 	row = mysql_fetch_row(res);
-printf("%s**************Reading note[%s]***************\n",CLR_WHT, id);
+printf("%sReading note[%s]...\n",CLR_WHT, id);
         printf("%s\t\t%s\n",CLR_RED,row[1]);
 n=strlen(row[1]);
 printf("%s\t\t",CLR_NORM);
@@ -182,23 +182,48 @@ printf("\n\n");
 /*Add note*/
 void add_note(){
         MYSQL *conn;
-        char query[1000] = "insert into mynotes(title,text) values('";
-        char *title;
-        char *text;
+        char query[1100] = "insert into mynotes(title,text) values('";
+        char *title,*eltit;
+        char *text,*txet;
+	int c, i, j=0;
 title = malloc(60*sizeof(char));
+eltit = malloc(70*sizeof(char));
 text = malloc(900*sizeof(char));
+txet = malloc(1000*sizeof(char));
 	printf("\nTitle : ");
 	gets(title);
+//puts(title);
+	for(i=0;i<=strlen(title);i++){
+		c=title[i];
+		if(c=='\''){
+			eltit[j++]='\'';
+			eltit[j++]=c;
+		}
+		else eltit[j++]=c;
+	}
+//puts(eltit);
 	printf("Type your note.....\n");
 	gets(text);
+//puts(text);
+	j=0;
+	for(i=0;i<=strlen(text);i++){
+                c=text[i];
+                if(c=='\''){
+                        txet[j++]='\'';
+			txet[j++]=c;
+		}
+                else txet[j++]=c;
+	}
+//puts(txet);
+
 /*
 printf("+++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 printf("%s\n\n%s\n",title,text);
 printf("+++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 */
-	strcat(query,title);
+	strcat(query,eltit);
 	strcat(query,"','");
-	strcat(query,text);
+	strcat(query,txet);
 	strcat(query,"')");
 
    conn = get_connection();
