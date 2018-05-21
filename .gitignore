@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 scvishnu-patch-2/
 
+=======
+>>>>>>> 65e250f0b7e0d11ad6e4f9dcafbe3762eba3b154
 # Object files
 *.o
 
@@ -17,4 +20,7 @@ scvishnu-patch-2/
 *.exe
 *.out
 *.app
+<<<<<<< HEAD
 
+=======
+>>>>>>> 65e250f0b7e0d11ad6e4f9dcafbe3762eba3b154
