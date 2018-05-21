@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-bishnu/
-=======
+scvishnu-patch-2/
+
 # Object files
 *.o
 
@@ -18,4 +17,4 @@ bishnu/
 *.exe
 *.out
 *.app
->>>>>>> e5a1b247be8fa4df0820b4798bdedd49286b59f6
+
