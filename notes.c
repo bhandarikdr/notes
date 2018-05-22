@@ -31,13 +31,13 @@ MYSQL *get_connection(){
 /*main program*/
 int main(int argc, char *argv[]) {
 if(argc > 1){
-	if(strcmp(argv[1],"-a")==0 || strcmp(argv[1],"-add")==0)
+	if(strcmp(argv[1],"-a")==0 || strcmp(argv[1],"add")==0)
 	add_note();
-	else if(strcmp(argv[1],"-c")==0 || strcmp(argv[1],"-configure")==0)
+	else if(strcmp(argv[1],"-c")==0 || strcmp(argv[1],"configure")==0)
 	create_db();
-	else if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"-help")==0)
+	else if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"help")==0)
 	u_help();
-	else if(strcmp(argv[1],"-t")==0 || strcmp(argv[1],"-truncate")==0)
+	else if(strcmp(argv[1],"-t")==0 || strcmp(argv[1],"truncate")==0)
 	truncate();
 	else
 	show_queried_note(argv[1]);
